@@ -6,6 +6,7 @@ const theme = extendTheme({
   styles: {
     global: {
       body: {
+        color: "whiteAlpha.900",
         fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
       }
     }
@@ -21,13 +22,3 @@ const theme = extendTheme({
 })
 
 export default theme;
-
-// // 3. Pass the new theme to `ChakraProvider`
-// <ChakraProvider theme={theme}>
-//   <App />
-// </ChakraProvider>
-
-// // 4. Now you can use these colors in your components
-// function Usage() {
-//   return <Box bg="brand.100">Welcome</Box>
-// }
