@@ -1,50 +1,27 @@
-# Vite + React + Typescript + Chakra + Cypress
+![BlackBox Vision](./src/assets/logo.png "BlackBox Vision")
 
-A starter for React with Typescript with the fast Vite and the beautiful Chakra, tested with the powerful Cypress.
+# QuizBox Vision
 
-![Vite + React + Typescript + Chakra + Cypress Starter](/src/resources/images/screenshot.png)
+QuizBox Vision es un juego de preguntas y respuestas, como tantos otros. Sin embargo, en este juego, se ponen muchas más cosas en juego!! Bueno, en realidad no, pero quedaba bien para el resúmen.
 
-I found out about Vite and I wanted to have a boilerplate for the technologies that I use. You can find more about these in the following links: [Vite](https://github.com/vitejs/vite), [React](https://reactjs.org/), [Typescript](https://www.typescriptlang.org/), [Chakra](https://chakra-ui.com/), [Cypress](https://www.cypress.io/).
+## Definición funcional
+El juego consiste en 10 preguntas las cuales pueden ser verdadero/falso o multiple choice.
 
-## Features
+Por cada pregunta, es necesario mostrar los siguientes campos:
+* Pregunta
+* Categoría
+* Dificultad
+* Posibles respuestas
 
-### Aliases
+Al seleccionar la respuesta, muestra si la misma fue correcta o no. No es necesario mostrar cuál era la respuesta correcta.
 
-This starter has configurations that enables aliases out of the box. Any folder inside `src` is automatically setup as an alias. It now has the following structure:
+Al finalizar el juego, se muestra el puntaje obtenido. El mismo se calcula de la
+siguiente manera:
+* Respuesta correcta (verdadero/falso): *5 puntos*
+* Respuesta correcta (multiple choice): *10 puntos*
+* Respuesta incorrecta: *0 puntos*
 
-```
-src
-    pages
-    resources
-```
-
-that generates the follow:
-
-```
-{
-    '@pages': '${project_path}/src/pages'
-    '@resources': '${project_path}/src/resources'
-}
-```
-
-### Editorconfig
-
-I have decided to include my `.editorconfig` file to help spread this nice tool. This file defines coding styles mantaining it consistent between multiple developers and their various Text Editors and IDEs.
-
-Learn more about [Editorconfig](https://editorconfig.org/).
-
-## Installation
-
-Clone the repo and run `yarn install`
-
-## Start
-
-After the successfull installation of the packages: `yarn start`
-
-## Tests
-
-You can build tests with Cypress. I wrote a small test to see if it's enabled. You can run it with `yarn test`
-
-## Contact
-
-Feel free to contact me on [Twitter](https://twitter.com/dieman_) or [Discord](https://discordapp.com/users/160512379510194187)
+## Definiciones técnicas
+* Todos los datos necesarios para el juego, están en [la siguiente API](https://opentdb.com/api.php?amount=10)
+* El juego puede realizarse en React web o React Native.
+* Cada pregunta debe presentarse en una pantalla distinta de la aplicación.
