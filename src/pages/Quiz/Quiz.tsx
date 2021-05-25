@@ -1,32 +1,39 @@
-import { Heading, Stack, Progress, useTimeout } from '@chakra-ui/react';
-import AppContext from '../../context';
-import React, {useEffect, useContext, useState} from 'react'
-import {Redirect} from 'react-router';
+import {Heading, Stack, Progress, Button} from "@chakra-ui/react";
+import React, {useEffect, useContext} from "react";
+import {Link} from "react-router-dom";
+
+import AppContext from "../../context";
 
 const Quiz = () => {
-  let questions = useContext(AppContext);
-  const [redirect, setRedirect] = useState(false);
+  const {questions, setQuestions} = useContext(AppContext);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch('https://opentdb.com/api.php?amount=10');
-      const formatted = await response.json()
-      questions = formatted.results
-    }
+    let isActive = true;
 
-    setTimeout(() => setRedirect(true), 5000);
+    const fetchData = async () => {
+      setQuestions([]);
+      const response = await fetch("https://opentdb.com/api.php?amount=10");
+      const formatted = await response.json();
+
+      isActive && setQuestions(formatted.results);
+    };
 
     fetchData();
 
-  }, [])
-  return (questions && redirect) ? (
-    <Redirect to='/quiz/1' />
-  ) : (
+    return () => {
+      isActive = false;
+    };
+  }, []);
+
+  return (
     <Stack>
       <Heading>All ready?</Heading>
-      <Progress size="xs" isIndeterminate />
+      <Button as={Link} colorScheme="blue" isLoading={!questions.length} to="/quiz/1">
+        I&apos;m Ready
+      </Button>
+      {/* <Progress isIndeterminate size="xs" /> */}
     </Stack>
-  )
-}
+  );
+};
 
 export default Quiz;

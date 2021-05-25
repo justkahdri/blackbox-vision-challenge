@@ -1,7 +1,15 @@
-import React from 'react'
-import { Question } from 'Types';
+import React from "react";
+import {Question} from "Types";
 
-const INITIAL_STATE: Question[] = [];
+type DefaultContext = {
+  questions: Question[];
+  setQuestions: (values: Question[]) => void;
+};
+
+const INITIAL_STATE: DefaultContext = {
+  questions: [],
+  setQuestions: () => console.error("setQuestions undefined"),
+};
 
 const AppContext = React.createContext(INITIAL_STATE);
 
