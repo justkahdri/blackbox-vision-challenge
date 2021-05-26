@@ -3,7 +3,7 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import {ChakraProvider} from "@chakra-ui/react";
 import {Question} from "Types";
 
-import {Home, Quiz, Layout, QuestionBox} from "./pages";
+import {Home, Quiz, Layout, QuestionBox, QuizEnd} from "./pages";
 import theme from "./theme";
 import {AppProvider} from "./context";
 
@@ -28,6 +28,7 @@ const App = () => {
                 <Route exact component={Home} path="/" />
                 <Route exact component={Quiz} path="/quiz" />
                 <Route exact component={QuestionBox} path="/quiz/:questionId" />
+                <Route exact component={QuizEnd} path="/end" />
                 <Route component={Home} />
               </Switch>
             </Layout>

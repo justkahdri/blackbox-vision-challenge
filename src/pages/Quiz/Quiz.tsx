@@ -28,7 +28,7 @@ const Quiz = () => {
   return (
     <Stack>
       <Heading>All ready?</Heading>
-      <Button as={Link} colorScheme="blue" isLoading={!questions.length} to="/quiz/1">
+      <Button as={Link} colorScheme="blue" isLoading={!questions.length} to="/quiz/0">
         I&apos;m Ready
       </Button>
       {/* <Progress isIndeterminate size="xs" /> */}
