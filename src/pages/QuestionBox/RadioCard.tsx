@@ -15,6 +15,7 @@ const RadioCard: React.FC<UseRadioProps> = (props) => {
         _checked={{
           bg: "primary.500",
           color: "white",
+          fontWeight: 500,
           borderColor: "primary.500",
         }}
         _focus={{

@@ -2,19 +2,26 @@ import React, {useState, useContext, useEffect} from "react";
 import {Heading, Stack, useRadioGroup, Button, useToast, Box} from "@chakra-ui/react";
 import {Redirect, useParams} from "react-router";
 import he from "he";
+import {Question} from "Types";
 
 import AppContext from "../../context";
 
+import Details from "./Details";
 import RadioCard from "./RadioCard";
+import QuestionProgress from "./QuestionProgress";
 
 const QuestionBox = () => {
-  const initialState = {
+  interface StateProps extends Question {
+    all_answers: string[];
+  }
+  const initialState: StateProps = {
+    all_answers: [],
     question: "",
-    category: "",
-    difficulty: "",
-    type: "",
     correct_answer: "",
-    all_answers: [""],
+    incorrect_answers: [],
+    category: "",
+    type: "boolean",
+    difficulty: "easy",
   };
 
   const toast = useToast();
@@ -25,12 +32,10 @@ const QuestionBox = () => {
 
   const [state, setState] = useState(initialState);
 
-  const {getRootProps, getRadioProps} = useRadioGroup({
+  const {getRadioProps} = useRadioGroup({
     name: "answers",
     onChange: setAnswerRadio,
   });
-
-  const group = getRootProps();
 
   const handleSubmit = () => {
     if (answerRadio === state.correct_answer) {
@@ -85,46 +90,37 @@ const QuestionBox = () => {
     return <Redirect to={redirect} />;
   } else {
     return (
-      <Stack
-        bgColor="white"
-        color="blackAlpha.800"
-        p={5}
-        rounded="md"
-        shadow="lg"
-        spacing={6}
-        w="60%"
-      >
-        <Heading as="h1">Question #{parseInt(questionId) + 1}</Heading>
-        <Stack direction="row">
-          {Array(10)
-            .fill("")
-            .map((_, i) => (
-              <Box
-                key={i}
-                bgColor={i > parseInt(questionId) ? "teal.100" : "primary.500"}
-                flex={1}
-                height={2}
-              />
-            ))}
-        </Stack>
-        <Heading as="h2" size="md">
-          {he.decode(state.question)}
-        </Heading>
+      <Stack spacing={8} w={{sm: "80%", md: "60%", xl: "50%"}}>
+        <QuestionProgress current={parseInt(questionId)} />
+        <Stack
+          bgColor="white"
+          color="blackAlpha.800"
+          px={5}
+          py={6}
+          rounded="md"
+          shadow="lg"
+          spacing={6}
+        >
+          <Heading as="h2" size="md">
+            {he.decode(state.question)}
+          </Heading>
+          <Details category={state.category} difficulty={state.difficulty} />
 
-        <Stack direction={state.type == "boolean" ? "row" : "column"}>
-          {state.all_answers.map((answer) => {
-            const radio = getRadioProps({value: answer});
+          <Stack direction={state.type == "boolean" ? "row" : "column"}>
+            {state.all_answers.map((answer) => {
+              const radio = getRadioProps({value: answer});
 
-            return (
-              <RadioCard key={answer} {...radio}>
-                {he.decode(answer)}
-              </RadioCard>
-            );
-          })}
+              return (
+                <RadioCard key={answer} {...radio}>
+                  {he.decode(answer)}
+                </RadioCard>
+              );
+            })}
+          </Stack>
+          <Button isDisabled={!answerRadio} onClick={handleSubmit}>
+            {parseInt(questionId) === 9 ? "Finish" : "Next"}
+          </Button>
         </Stack>
-        <Button isDisabled={!answerRadio} onClick={handleSubmit}>
-          Next
-        </Button>
       </Stack>
     );
   }
