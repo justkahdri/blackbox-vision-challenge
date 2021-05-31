@@ -1,5 +1,5 @@
 // 1. Import `extendTheme`
-import { extendTheme } from "@chakra-ui/react"
+import {extendTheme} from "@chakra-ui/react";
 
 // 2. Call `extendTheme` and pass your custom values
 const theme = extendTheme({
@@ -7,18 +7,29 @@ const theme = extendTheme({
     global: {
       body: {
         color: "whiteAlpha.900",
-        fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
-      }
-    }
+        fontFamily:
+          "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+      },
+    },
   },
   colors: {
     primary: {
       500: "#44D1B3",
     },
     secondary: {
-      500: '#E94F4E'
-    }
+      500: "#E94F4E",
+    },
   },
-})
+  components: {
+    Button: {
+      variants: {
+        ghost: ({colorScheme = "blue"}) => ({
+          color: "white",
+          _hover: {color: `${colorScheme}.500`, bgColor: "white"},
+        }),
+      },
+    },
+  },
+});
 
 export default theme;
