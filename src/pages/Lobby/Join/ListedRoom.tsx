@@ -1,8 +1,15 @@
 import React from "react";
-import {Stack, Text, Button, Image, Spacer, Skeleton} from "@chakra-ui/react";
+import {Stack, Text, Button, Image, Spacer, Skeleton, Icon} from "@chakra-ui/react";
 import {Room} from "Types";
+import {HiLockClosed} from "react-icons/hi";
 
-const ListedRoom: React.FC<Room> = ({name, id}) => {
+type Props = {
+  handleJoin: (room: Room) => void;
+} & Room;
+
+const ListedRoom: React.FC<Props> = ({handleJoin, ...rest}) => {
+  const {name, id, password} = rest;
+
   return (
     <Stack
       alignItems="center"
@@ -23,14 +30,18 @@ const ListedRoom: React.FC<Room> = ({name, id}) => {
         width="50px"
       />
       <Stack lineHeight="100%">
-        <Text>{`${name}'s Room`}</Text>
+        <Text>
+          {`${name}'s Room`} {password && <Icon as={HiLockClosed} />}
+        </Text>
         <Text as="small" color="blackAlpha.600">
           #{id}
         </Text>
       </Stack>
       <Spacer />
 
-      <Button variant="link">Join</Button>
+      <Button variant="link" onClick={() => handleJoin(rest)}>
+        Join
+      </Button>
     </Stack>
   );
 };
