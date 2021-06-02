@@ -15,12 +15,14 @@ import {
   FormControl,
 } from "@chakra-ui/react";
 import {Room} from "Types";
+import {useHistory} from "react-router";
 
 import AppContext from "../../../context";
 
 const JoinModal: React.FC<UseModalProps & {room: Room}> = ({room, ...rest}) => {
   const {socket} = useContext(AppContext);
   const [errors, setErrors] = useState({name: "", password: ""});
+  const history = useHistory();
 
   const name = useRef() as MutableRefObject<HTMLInputElement>;
   const password = useRef() as MutableRefObject<HTMLInputElement>;
@@ -42,6 +44,7 @@ const JoinModal: React.FC<UseModalProps & {room: Room}> = ({room, ...rest}) => {
     } // TODO Refactor
 
     socket && socket.emit("join-room", room.id);
+    history.push(`/online/${room.id}`);
   };
 
   return (

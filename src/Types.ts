@@ -11,4 +11,10 @@ export type Room = {
   id: string;
   name: string;
   password?: string;
+  category: string;
+};
+
+export type Category = {
+  id: number;
+  name: string;
 };

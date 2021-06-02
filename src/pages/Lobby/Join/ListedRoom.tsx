@@ -2,6 +2,7 @@ import React from "react";
 import {Stack, Text, Button, Image, Spacer, Skeleton, Icon} from "@chakra-ui/react";
 import {Room} from "Types";
 import {HiLockClosed} from "react-icons/hi";
+import slugify from "@sindresorhus/slugify";
 
 type Props = {
   handleJoin: (room: Room) => void;
@@ -26,7 +27,7 @@ const ListedRoom: React.FC<Props> = ({handleJoin, ...rest}) => {
         fallback={<Skeleton height="50px" width="50px" />}
         height="50px"
         objectFit="contain"
-        src={`https://avatars.dicebear.com/api/bottts/${name}.svg`}
+        src={`https://avatars.dicebear.com/api/bottts/${slugify(name)}.svg`}
         width="50px"
       />
       <Stack lineHeight="100%">

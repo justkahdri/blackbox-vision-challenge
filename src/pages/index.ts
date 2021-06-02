@@ -4,3 +4,4 @@ export {default as Lobby} from "./Lobby/Lobby";
 export {default as QuizEnd} from "./QuizEnd/QuizEnd";
 export {default as Quiz} from "./Quiz/Quiz";
 export {default as QuestionBox} from "./QuestionBox/QuestionBox";
+export {default as WaitingRoom} from "./WaitingRoom/WaitingRoom";

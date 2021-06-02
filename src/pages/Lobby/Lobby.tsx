@@ -6,9 +6,13 @@ import Join from "./Join";
 
 const Lobby = () => {
   return (
-    <Stack direction="row" spacing={{base: 5, "2xl": "100px"}} width={{md: "80%", lg: "60%"}}>
+    <Stack
+      direction={{base: "column-reverse", md: "row"}}
+      spacing={{base: 10, md: 5, xl: "100px"}}
+      width={{md: "80%", "2xl": "60%"}}
+    >
       <Join flex={{base: 1, lg: 1.2, xl: 2}} />
-      <Host flex={1} />
+      <Host flex={1} spacing={{base: 3, md: "3vh"}} />
     </Stack>
   );
 };
