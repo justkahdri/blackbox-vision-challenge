@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect} from "react";
 import {Button, Heading, Stack, Text, Icon} from "@chakra-ui/react";
 import {AiFillTrophy} from "react-icons/ai";
 import {Link} from "react-router-dom";
@@ -6,7 +6,13 @@ import {Link} from "react-router-dom";
 import AppContext from "../../context";
 
 const QuizEnd = () => {
-  const {points} = useContext(AppContext);
+  const {points, resetPoints} = useContext(AppContext);
+
+  useEffect(() => {
+    return () => {
+      resetPoints();
+    };
+  }, [resetPoints]);
 
   return (
     <Stack alignItems="center" spacing={6}>

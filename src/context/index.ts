@@ -6,12 +6,14 @@ type DefaultContext = {
   points: number;
   setQuestions: (values: Question[]) => void;
   addPoints: (points: number) => void;
+  resetPoints: () => void;
 };
 
 const INITIAL_STATE: DefaultContext = {
   questions: [],
   points: 0,
   addPoints: () => console.error("addPoints undefined"),
+  resetPoints: () => console.error("addPoints undefined"),
   setQuestions: () => console.error("setQuestions undefined"),
 };
 

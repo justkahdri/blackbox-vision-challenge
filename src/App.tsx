@@ -16,7 +16,8 @@ const App = () => {
 
   const setQuestions = (values: Question[]) => setState({...state, questions: values});
   const addPoints = (new_points: number) => setState({...state, points: state.points + new_points});
-  const defaultContext = {...state, setQuestions, addPoints};
+  const resetPoints = () => setState({...state, points: 0});
+  const defaultContext = {...state, setQuestions, addPoints, resetPoints};
 
   return (
     <ChakraProvider theme={theme}>
